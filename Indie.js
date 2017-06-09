@@ -21,7 +21,7 @@ $(document).on('click', '#zip', function(){
 function bandTickets (){
 // Build up the url with a wrestler and a limit added to the search
 
-	var searchUrl = 'http://api.eventful.com/json/events/search?...?q=music&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
+	var searchUrl = 'http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
 	$.ajax({
 	url: searchUrl,
 	dataType: 'jsonp',
@@ -40,12 +40,12 @@ function bandTickets (){
 			$('#eventLink').append(a);
 			$('#eventLink').append('<br />');
 
-			// if(results.event[i].description!=null){
-			// 	var b = $('<div>');
-			// 	b.html(results.event[i].description);
-			// 	$('#eventLink').append(b);
-			// 	$('#eventLink').append('<br />');
-			// }
+			if(results.event[i].description!=null){
+				var b = $('<div>');
+				b.html(results.event[i].description);
+				$('#eventLink').append(b);
+				$('#eventLink').append('<br />');
+			}
 
 			if(results.event[i].image!=null){
 				var c = $('<img src=' + results.event[i].image.medium.url + '>');
