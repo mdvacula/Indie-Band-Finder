@@ -1,29 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		
+
 		<meta charset="utf-8">
-		<title>Indie Band Finder</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Bangers|Modak|Mogra|Orbitron|Paytone+One|Permanent+Marker|Pirata+One|Righteous|Russo+One" rel="stylesheet">
+		<title>Title</title>
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<link rel="stylesheet" type="text/css" href="assets/style.css">
+
+		<link rel="stylesheet" type="text/css" href="assets/reset.css">
+		
+<!--Font Links-->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery.js"></script>
+		
+		<script type="text/javascript" src='Indie.js'></script>
+	
+
 	</head>
 	<body>
-		<div class="container">
-		<h1>Indie Band Finder</h1>
-			<h3>Enter zip code to find the hottest under the radar band in your area.</h3>
-			<button style="margin-left:20px" type="text" id="zip">Enter zip code here.</button>
-			<input style="padding-left:10px" type="text" id="zipBands" placeholder="00000">
-			<div id="bandButtons">
-			
-			</div>
-			<div id="eventLink">
-			
-			
-			</div>
 
-			<script src="https://code.jquery.com/jquery.js"></script>
-			<script type="text/javascript" src='Indie.js'></script>
-			
+<div class = "page1">
+
+	<!--Row 1: Title-->
+		<div class = "row">
+			<div class = "col-md-12"> 
+			<h1 id = "title"> Title </h1>
+			</div>
 		</div>
 
+
+<!--Row 2: Header-->
+		<div class = "row">
+			<div class = "col-md-12">
+			<h3 id = "letUs">Let us help you locate music events near you.</h3>
+			</div>
+		</div>
+
+<!--Row 3: Input panel-->
+	
+		<div class = "row">
+
+			<div class = "col-md-4">
+			</div>
+			<div class = "col-md-4">
+			<form>
+			  <div class="form-group">
+			    <input id = "zipBands" type="text" class="form-control" placeholder="Zipcode">
+			  </div>
+			</form>
+			</div>
+
+			<div class = "col-md-4">
+			</div>
+
+
+		</div>
+
+
+<!--Row 4: Search button-->
+
+		<div class = "row">
+			<div class = "col-md-12">
+			<center><button id = "zip" type="button" class="btn btn-default">Search</button></center>
+			</div>
+		</div>
+	
+<!--Container class ending Page 1-->
+</div>
+
+<!--Page 2-->
+
+<div class = "page2">
+
+	<!--Row 1: Title-->
+		<div class = "row">
+			<div class = "col-md-12"> 
+			<h1 id = "title2"> Choose Your Genre! </h1>
+			</div>
+		</div>
+
+
+	<!--Row 2: Header-->
+
+		<div class = "row">
+			<div class = "col-md-12">
+			<h3 id = "header2">We'll find you events with great vibes.</h3>
+			</div>
+		</div>
+
+	<!--Row 3: Options List-->
+
+		<div class = "row">
+			<div class = "col-md-12">
+			<ul class = "genre-options">
+				<li id = "jazz">
+				Jazz
+				</li>
+				<li id = "rock">
+				Rock
+				</li>
+				<li id = "pop">
+				Pop 
+				</li>
+				<li id = "r&b">
+				Hip-Hop,
+				R&ampB
+				</li>
+			</ul>
+			</div>
+		</div>
+
+
+	<!--Row 4: Slider-->
+		<div class = "row">
+		<div class = "col-md-4">
+			<div class = "slider">
+			<h4 class = "mood">
+			Mood
+			</h4>
+			<input type = "range" name = "pace" min = "60" max = "160" class = "style-range">
+			<ul class = "slider-list">
+				<li> Relaxation </li>
+				<li> Adventure </li>
+				<li> Party </li>
+			</ul>
+			</div>	
+		</div>
+		</div>
+
+	<!--Row 6 Find your event button-->
+		<div class = "row">
+		<div class = "col-md-12">
+			<button id = "submit" type="button" class="btn btn-default">
+			Find Your Event
+			</button>
+		</div>
+		</div>
+
+<!--Container class ending Page 2-->
+</div>
+<!--Page 3-->
+<div class = "row">
+<div class = "col-md-12">
+
+<div class="wrap">
+
+
+
+	<div class="table">
+		<ul>
+			<!--First-->  
+			<li>
+			  <div class="top">
+			    <h1 class = "eventName"> Event 1</h1>
+			  <div class="bottom">
+			    <p class = "eventInfo">
+			    	Placeholder
+			    </p>
+			    <div class="sign">
+			    <a href='#' class='button'>More Info</a>
+			    </div>
+			  </div>
+			</li>
+
+			<!--Second-->
+			  
+			<li>
+			  <div class="top">
+			    <h1  class = "eventName">Event 2</h1>
+			    <div class="bottom">
+			    <p class = "eventInfo">
+			    	Placeholder
+			    </p>
+			    <div class="sign">
+			    <a href='#' class='button'>More Info</a>
+			    </div>
+			  </div>
+			</li>
+
+			<!--Third-->
+			  
+			<li>
+			  <div class="top">
+			    <h1 class = "eventName">Event 3</h1>
+			    <div class="bottom">
+			    <p class = "eventInfo">
+			    	Placeholder
+			    </p>
+			    <div class="sign">
+			    <a href='#' class='button'>More Info</a>
+			    </div>
+			  </div>
+			</li>
+
+			<!--Fourth-->
+			  
+			<li>
+			  <div class="top">
+			    <h1 class="eventName">Event 4</h1>
+			    <div class="bottom">
+			    <p class = "eventInfo">
+			    	Placeholder
+			    </p>
+			    <div class="sign">
+			    <a href='#' class='button'>More Info</a>
+			    </div>
+			  </div>
+			</li>
+
+			<!--Fifth-->
+
+			<li>
+			  <div class="top">
+			    <h1 class = "eventName">Event 5</h1>
+			    <div class="bottom">
+			    <p class = "eventInfo">
+			    	Placeholder
+			    </p>
+			    <div class="sign">
+			    <a href='#' class='button'>More Info</a>
+			    </div>
+			  </div>
+			</li>
+
+			<!--Sixth-->
+
+			<li>
+			  <div class="top">
+			    <h1 class = "eventName">Event 6</h1>
+			    <div class="bottom">
+			    <p class="eventInfo">
+			    	Placeholder
+			    </p>
+			    <div class="sign">
+			    <a href='#' class='button'>More Info</a>
+			    </div>
+			  </div>
+			</li>
+			<!--Seventh-->
+			<li>
+			  <div class="top">
+			    <h1 class = "eventName">Event 7</h1>
+			    <div class="bottom">
+			    <p class = "eventInfo">
+			    	Placeholder
+			    </p>
+			    <div class="sign">
+			    <a href='#' class='button'>More Info</a>
+			    </div>
+			  </div>
+			</li>
+			  
+		</ul>
+</div>
+</div>
+
+<!--Page 4-->
+
+
+
+
+
+
 	</body>
+
+
+
 </html>
