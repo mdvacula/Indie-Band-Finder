@@ -6,21 +6,45 @@ var units = 'miles';
 var app_key = 'hNbJCFtMGbfsfr9T';
 
 $(document).on('click', '#zip', function(){
-	if($('#zipBands').val().trim().length!=5){
-		console.log($('#zipBands').val());
-		$('#zipBands').attr('placeholder', "Please enter a zip code.");
+
+	// Input validation variables
+	var validation = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+	var userZip = $('#zipBands').val().trim();
+	var zipCount = 0;
+	var validEntry = false;
+
+	// Input validation function
+	function validKey(){
+		for(var i in userZip){
+			if(validation.indexOf(userZip.charAt(i)) != -1){
+				zipCount++;		
+			}
+		}
+		if(zipCount === 5){
+			validEntry = true;
+		}
+
+		return validEntry;
 	}
+	validKey();
+
+	// If not valid let the user know
+	if(userZip.length!=5 || validEntry == false){
+		$('#zipBands').val('');
+		$('#zipBands').attr('placeholder', 'Enter a valid zip code');
+	}
+
+	// If valid run the search
 	else{
 		l = $('#zipBands').val();
 		$('#eventLink').empty();
 		bandTickets();
+		validEntry=false;
 	}
 	});
 
-// Search for and display wrestler GIFS
 function bandTickets (){
-// Build up the url with a wrestler and a limit added to the search
-
+	// Built url = http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=indie&l=08901&within=10&units=miles&app_key=hNbJCFtMGbfsfr9T
 	var searchUrl = 'http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
 	$.ajax({
 	url: searchUrl,
