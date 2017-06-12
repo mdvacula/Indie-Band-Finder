@@ -6,3 +6,9 @@ TicketMaster API Key = 	iR1kIlj68zTArGWwpJQfZ18ER3WRtj4G
 
 Eventful API = hNbJCFtMGbfsfr9T
 Sample Search = http://api.eventful.com/json/events/search?...?q=music&keywords=indie&l=08901&within=10&units=miles&app_key=hNbJCFtMGbfsfr9T
+
+Spotify
+Client ID
+6336729828b143318e68c44b069bae93
+Client Secret
+b31ac4a67be24d42bdabf1b05e1a5e17
