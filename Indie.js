@@ -58,7 +58,6 @@ console.log("Should be valid " + testValid(testString1));
 console.log("Should be invalid " + testValid(testString2));
 
 
-// // Search for and display wrestler GIFS
 // function bandTickets (){
 // // Build up the url with a wrestler and a limit added to the search
 
