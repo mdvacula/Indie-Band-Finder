@@ -5,6 +5,25 @@ var within = '30';
 var units = 'miles';
 var app_key = 'hNbJCFtMGbfsfr9T';
 
+var events = [];
+
+var valueCheck = function(eventObject){
+	var check = true;
+	console.log("checking value");
+	if(eventObject.description === null){
+		check = false;
+	}
+	else if (eventObject.image === null ) {
+		check = false;
+	}
+	else if(eventObject.performers === null ){
+		check = false;
+	}
+
+	return check;
+};
+
+//On click of submit zipcode button
 $(document).on('click', '#zip', function(){
 
 	// Input validation variables
@@ -36,16 +55,22 @@ $(document).on('click', '#zip', function(){
 
 	// If valid run the search
 	else{
-		l = $('#zipBands').val();
-		$('#eventLink').empty();
-		bandTickets();
-		validEntry=false;
+		l = $('#zipBands').val();							//set l to the zipcode entered
+		window.location.href='2ndpage.html';		//progress to next page
+		validEntry=false;											//resets validEnd
 	}
+	});
+
+	$(".genre").on("click", function(){
+		$("#eventLink").empty();
+		keywords = $(this).attr("value");
+		bandTickets();
+
 	});
 
 function bandTickets (){
 	// Built url = http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=indie&l=08901&within=10&units=miles&app_key=hNbJCFtMGbfsfr9T
-	var searchUrl = 'http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
+	var searchUrl = 'http://api.eventful.com/json/events/search?...?q=music&category=music&page_size=50&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
 	$.ajax({
 	url: searchUrl,
 	dataType: 'jsonp',
@@ -53,31 +78,58 @@ function bandTickets (){
 	}).done(function(response){
 	// Store ajax JSON results
 		var results = response.events
+		console.log(results);
+		//console.log(response.total_items);
+		//console.log(results.event.length);
 
-		for(var i=0; i<10; i++){
+			for(var i=0; i<results.event.length;i++){
+				console.log("in for loop" + i);
+				if(events.length < 7){
+					console.log("if events" + events.length);
 
-			var a = $('<a>');
-			a.attr('href', results.event[i].url);
-			a.attr('target', '_blank');
-			a.html(results.event[i].title);
-			$('#eventLink').append('<br />');
-			$('#eventLink').append(a);
-			$('#eventLink').append('<br />');
+					if(valueCheck(results.event[i]) == true){
+						var event = {
+							title: results.event[i].title,
+							artist: results.event[i].performers.performer.name,
+							eventURL: results.event[i].url,
+							videoId: "",
+							image: results.event[i].image.medium.url,
+							description: results.event[i].description
+						}
 
-			if(results.event[i].description!=null){
-				var b = $('<div>');
-				b.html(results.event[i].description);
-				$('#eventLink').append(b);
-				$('#eventLink').append('<br />');
-			}
-
-			if(results.event[i].image!=null){
-				var c = $('<img src=' + results.event[i].image.medium.url + '>');
-				c.attr('href', results.event[i].url);
-				$('#eventLink').append(c);
-				$('#eventLink').append('<br />');
-			}
+						events.push(event);
+						console.log(event);
+						console.log(events);
+					}
+					else{
+						//do nothing
+					}
+				}
+				else{
+					break;
+				}
+		console.log(events);
 		}
-	});
-	}
-bandTickets();
+
+			});
+
+
+
+
+}
+			// if(results.event[i].description!=null){
+			// 	event.description = results.event[i].description;
+			// 	//var b = $('<div>');
+			// 	//b.html(results.event[i].description);
+			// 	//$('#eventLink').append(b);
+			// 	//$('#eventLink').append('<br />');
+			// }
+
+			// if(results.event[i].image!=null){
+			// 	event.image = results.event[i].image.medium.url;
+			// 	//var c = $('<img src=' + results.event[i].image.medium.url + '>');
+			// 	//c.attr('href', results.event[i].url);
+			// 	//$('#eventLink').append(c);
+			// 	//$('#eventLink').append('<br />');
+			// }
+//bandTickets();
