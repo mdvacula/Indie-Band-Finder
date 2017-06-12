@@ -64,6 +64,7 @@ $(document).on('click', '#zip', function(){
 	$(".genre").on("click", function(){
 		$("#eventLink").empty();
 		keywords = $(this).attr("value");
+		console.log($(this).attr("value"));
 		bandTickets();
 
 	});
@@ -82,13 +83,20 @@ function bandTickets (){
 		//console.log(response.total_items);
 		//console.log(results.event.length);
 
+			// Empty ol outside of for loop to hold looped results
+			var showShows = $('<ol>');
+
+			$("#eventLink").append(showShows);
+
 			for(var i=0; i<results.event.length;i++){
 				console.log("in for loop" + i);
 				if(events.length < 7){
 					console.log("if events" + events.length);
 
 					if(valueCheck(results.event[i]) == true){
+						// Creates event object
 						var event = {
+							date: results.event[i].start_time,
 							title: results.event[i].title,
 							artist: results.event[i].performers.performer.name,
 							eventURL: results.event[i].url,
@@ -96,7 +104,28 @@ function bandTickets (){
 							image: results.event[i].image.medium.url,
 							description: results.event[i].description
 						}
+						// Displays event object properties
+						var show = $('<li>');
+						console.log(event.title);
+						console.log(event.artist);
+						show.html(event.title);
+						show.append('<br/>');
+						show.append(event.artist);
+						show.append('<br/>');
+						var showLink = $('<a>');
+						showLink.html(event.eventURL);
+						showLink.attr('href', event.eventURL);
+						show.append(showLink);
+						show.append('<br/>');
+						show.append(event.date);
+						show.append('<br/>');
 
+						var showPic = $('<img src=' + event.image + '>');
+						show.append(showPic);
+						show.append('<br/>');
+						show.append(event.description);
+						
+						showShows.append(show);
 						events.push(event);
 						console.log(event);
 						console.log(events);
@@ -108,8 +137,9 @@ function bandTickets (){
 				else{
 					break;
 				}
-		console.log(events);
-		}
+
+			console.log(events);
+			}
 
 		var getVideo = function(){
 			for(var i=0; i<events.length; i++){
