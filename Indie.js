@@ -6,106 +6,78 @@ var units = 'miles';
 var app_key = 'hNbJCFtMGbfsfr9T';
 
 $(document).on('click', '#zip', function(){
-	if($('#zipBands').val().trim().length!=5){
-		console.log($('#zipBands').val());
-		$('#zipBands').attr('placeholder', "Please enter a zip code.");
+
+	// Input validation variables
+	var validation = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+	var userZip = $('#zipBands').val().trim();
+	var zipCount = 0;
+	var validEntry = false;
+
+	// Input validation function
+	function validKey(){
+		for(var i in userZip){
+			if(validation.indexOf(userZip.charAt(i)) != -1){
+				zipCount++;		
+			}
+		}
+		if(zipCount === 5){
+			validEntry = true;
+		}
+
+		return validEntry;
 	}
+	validKey();
+
+	// If not valid let the user know
+	if(userZip.length!=5 || validEntry == false){
+		$('#zipBands').val('');
+		$('#zipBands').attr('placeholder', 'Enter a valid zip code');
+	}
+
+	// If valid run the search
 	else{
 		l = $('#zipBands').val();
 		$('#eventLink').empty();
 		bandTickets();
+		validEntry=false;
 	}
 	});
 
-// Search for and display wrestler GIFS
 function bandTickets (){
-// Build up the url with a wrestler and a limit added to the search
-
-	var searchUrl = 'http://api.eventful.com/json/events/search?...?q=music&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
-	
+	// Built url = http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=indie&l=08901&within=10&units=miles&app_key=hNbJCFtMGbfsfr9T
+	var searchUrl = 'http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
 	$.ajax({
 	url: searchUrl,
 	dataType: 'jsonp',
 	method: "GET"
 	}).done(function(response){
 	// Store ajax JSON results
-	var results = response.events
+		var results = response.events
 
-	for(var i=0; i<5; i++){
+		for(var i=0; i<10; i++){
 
-		var a = $('<div>');
-		a.attr('id', 'title');
-		a.html(results.event[i].title);
-		var b = $('<img src=' + results.event[i].image.medium.url + '>');
-		b.attr('href', results.event[i].url);
-		var c = $('<div>');
-		c.html(results.event[i].url);
-		console.log(c);
-		$('#eventLink').append('<br />');
-		$('#eventLink').append(a);
-		$('#eventLink').append('<br />');
-		$('#eventLink').append(b);
-		$('#eventLink').append('<br />');
-		$('#eventLink').append(c);
+			var a = $('<a>');
+			a.attr('href', results.event[i].url);
+			a.attr('target', '_blank');
+			a.html(results.event[i].title);
+			$('#eventLink').append('<br />');
+			$('#eventLink').append(a);
+			$('#eventLink').append('<br />');
+
+			if(results.event[i].description!=null){
+				var b = $('<div>');
+				b.html(results.event[i].description);
+				$('#eventLink').append(b);
+				$('#eventLink').append('<br />');
+			}
+
+			if(results.event[i].image!=null){
+				var c = $('<img src=' + results.event[i].image.medium.url + '>');
+				c.attr('href', results.event[i].url);
+				$('#eventLink').append(c);
+				$('#eventLink').append('<br />');
+			}		
 		}
 	});
 	}
 bandTickets();
-
-// 	// Clear GIF area before displaying newly searched GIFS
-// 	$('#viewGif').empty();
-// 	// Loop over the results (Limit = 10)
-// 	for(var i = 0; i < response.data.length; i++){
-
-
-
-// 	// var p = $('<p>');
-	// 	// p.html = response.data[i].rating;
-	// 	// Create new div per wrestler
-	// 	// Create new image still per wrestler
-	// 	var wrestlerDiv = $('<div>');
-		// 	var wrestlerImage = $('<img src=' + response.data[i].images.fixed_height_still.url + '>');
-		// 	// Add class so I can monitor all gifs with later click event with animate on click option
-		// 	wrestlerImage.addClass('gif');
-		// 	// Animate on click switches image source from still to animated link based on these properties
-		// 	wrestlerImage.attr('data-still', response.data[i].images.fixed_height_still.url);
-		// 	wrestlerImage.attr('data-animate', response.data[i].images.fixed_height.url);
-		// 	wrestlerImage.attr('data-state', 'still');
-		// 	wrestlerDiv.append(wrestlerImage);
-		//       			// Add new GIF to view GIF area appending per result
-		// 	$('#viewGif').append(wrestlerDiv);
-		// 	}
-		// }); // End of ajax response function
-		// } // End of displaywrestlerGifs
-		// // On gif click this function is run
-		// function startStop(){
-		// 	// Current state determines click response
-		// 	var state = $(this).attr('data-state')
-		// 	// If still click will animate
-		// 	if (state === 'still'){
-		// 		$(this).attr('src', $(this).attr('data-animate'));
-		// 		$(this).attr('data-state', 'animate');
-		// 	}
-		// 	// If animated click will switch to still
-		// 	else{
-		// 		$(this).attr('src', $(this).attr('data-still'));
-		// 		$(this).attr('data-state', 'still');
-		// 	}
-		// }
-		// $(document).on('click', '.gif', startStop);
-		// // Render buttons per wrestler in array
-		// function displayButtons(){
-		// 	// Start by clearing buttons
-		// 	$('#wrestlerButtons').empty();
-		// 	// Rerender buttons per wrestler appending results
-		// 	for(var i in topics){
-		// 		var a = $('<button>');
-		// 		a.addClass('wrestler');
-		//       				a.attr("data-name", topics[i]);
-		//       				a.text(topics[i]);;
-		// 		$('#wrestlerButtons').append(a);
-		// 	}
-		// }
-		// // All buttons have a wrestler class, so any one clicked will trigger displaywrestlerGifs();
-		// $(document).on('click', '.wrestler', displayWrestlerGifs)
-		// displayButtons();
