@@ -17,7 +17,7 @@ $(document).on('click', '#zip', function(){
 	function validKey(){
 		for(var i in userZip){
 			if(validation.indexOf(userZip.charAt(i)) != -1){
-				zipCount++;		
+				zipCount++;
 			}
 		}
 		if(zipCount === 5){
@@ -29,7 +29,7 @@ $(document).on('click', '#zip', function(){
 	validKey();
 
 	// If not valid let the user know
-	if(userZip.length!=5 || validEntry == false){
+	if(userZip.length!=5 || validEntry === false){
 		$('#zipBands').val('');
 		$('#zipBands').attr('placeholder', 'Enter a valid zip code');
 	}
@@ -76,7 +76,7 @@ function bandTickets (){
 				c.attr('href', results.event[i].url);
 				$('#eventLink').append(c);
 				$('#eventLink').append('<br />');
-			}		
+			}
 		}
 	});
 	}

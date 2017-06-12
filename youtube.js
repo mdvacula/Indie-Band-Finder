@@ -11,14 +11,16 @@ var queryString1 = $.param({
 
 
 
+//Ajax call to youtube to get the list of channels
 $.ajax({
     url: "https://www.googleapis.com/youtube/v3/search?" + queryString1,
     method:"GET"
 }).done(function(result){
     console.log(result);
-    var id = result.items[0].id.channelId;
+
+    var id = result.items[0].id.channelId;  //get the channelId of the first result
     console.log("Channel id: " + id);
-    getVideos(id);
+    getVideos(id);  //pass the channel id of the first result
 });
 
 };
