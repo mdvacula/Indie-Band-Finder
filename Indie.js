@@ -29,7 +29,7 @@ $(document).on('click', '#zip', function(){
 	validKey();
 
 	// If not valid let the user know
-	if(userZip.length!=5 || validEntry == false){
+	if(userZip.length!=5 || validEntry === false){
 		$('#zipBands').val('');
 		$('#zipBands').attr('placeholder', 'Enter a valid zip code');
 	}
@@ -76,9 +76,8 @@ function bandTickets (){
 				c.attr('href', results.event[i].url);
 				$('#eventLink').append(c);
 				$('#eventLink').append('<br />');
-			}		
+			}
 		}
 	});
 	}
 bandTickets();
-
