@@ -16,7 +16,7 @@ var valueCheck = function(eventObject){
 	else if (eventObject.image === null ) {
 		check = false;
 	}
-	else if(eventObject.performers === null ){
+	else if(eventObject.performers === null || eventObject.performers.performer === null || eventObject.performers.performer.name === null || eventObject.performers.performer.name > 1){
 		check = false;
 	}
 
@@ -111,6 +111,15 @@ function bandTickets (){
 		console.log(events);
 		}
 
+		var getVideo = function(){
+			for(var i=0; i<events.length; i++){
+				console.log(events[i].artist);
+				events[i].videoId = getChannel(events[i].artist);
+			}
+
+		}
+		getVideo();
+		console.log(events);
 			});
 
 

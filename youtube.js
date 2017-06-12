@@ -5,7 +5,8 @@ var getChannel = function (query){
 var queryString1 = $.param({
     key: "AIzaSyBNaBVt7q6kyHvRgRBvIaxdRieoHqKJsL8",
     q: query,
-    part: "snippet"
+    part: "snippet",
+    type: "channel"
 
 });
 
@@ -18,7 +19,9 @@ $.ajax({
     console.log(result);
     var id = result.items[0].id.channelId;  //get the channelId of the first result
     console.log("Channel id: " + id);
-    getVideos(id);  //pass the channel id of the first result
+
+    return getVideos(id);  //pass the channel id of the first result
+    console.log(events);
 });
 
 };
@@ -40,6 +43,7 @@ var getVideos = function(id) {
     }).done(function(response){
         console.log(response);
         console.log(response.items[0].id.videoId);
+        //return(response.items[0].id.videoId);
     });
 };
 // Sample urls
