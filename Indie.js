@@ -182,3 +182,10 @@ function bandTickets (){
 var showVideo = function(vidId){
 	$("#video").attr("src", "https://www.youtube.com/embed/" + nEvent.videoId);
 };
+
+$(document).on('click', '.page3Link', function(){
+	// window.location.href='3rdpage.html';
+	var x = $(this).attr("value");
+	nEvent = events[x];
+	console.log(nEvent.videoId);
+});
