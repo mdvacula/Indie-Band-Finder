@@ -1,7 +1,7 @@
 body {
-background: #fe8c00;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #f83600, #fe8c00);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #f83600, #fe8c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: #fe8c00;   /*fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f83600, #fe8c00);   /*Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f83600, #fe8c00);  /*W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 ol{
@@ -13,15 +13,20 @@ li{
   border-bottom: 4px solid #A0A;
 }
 
+
 #title {
-    color: #ffffff;
+    color: #fcf3e7;
     position: absolute;
     margin: auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 300px;
+    height: 300px; /*300*/
+    font-size: 80px;
+    font-weight: 400;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 0.03em;
 }
 
 .inputField {
@@ -32,20 +37,20 @@ li{
     right: 0;
     bottom: 0;
     left: 0;
-    height: 150px;
+    height: 50px; /* 50*/
     border-color: #fff;
     color: #fff;
 }
 
 #title2 {
-    color: #9c27b0;
+    color: #000;
     position: absolute;
     margin: auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 170px;
+    height: 100px; /*100*/
 }
 
 #zip {
@@ -57,7 +62,7 @@ position: absolute;
   left: 0;
   width: 200px;
   height: 40px;
-  margin-top: 30px;
+  margin-top: 55px;
   background-color: #fff;
   color: #f24000;
 }
@@ -112,6 +117,125 @@ position: absolute;
     background-color: #000;
     border: 2px #fff;
 }
+
+/*Artists CSS*/
+/* USER PROFILE PAGE */
+#cardHov {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 400px;
+    width: 1000px;
+}
+
+ .card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgba(255,255,255, 0.1);
+}
+.card.hovercard .card-background {
+    height: 130px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 25px;
+    line-height: 1;
+    color: #9c27b0;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #000;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+
+.wellBg {
+	background-color: transparent;
+}
+
+#btn1 {
+	background-color: #000;
+}
+
+.tabText {
+	color: #ff4800;
+}
+
+.fontA {
+	color: #9c27b0;
+}
+
+#favorites,
+#stars {
+	background-color: #000;
+	border: 0.5px solid #9c27b0;
+}
+
+/*End of Artists CSS
+*\
 
 /* button flex center of page
 ==========================================================================*/
@@ -198,37 +322,3 @@ a.btn>span.glyphicon {
 		align-items: flex-end;
 
 	}
-
-	/*--------------------Page 3----------------------*/
-
-	#artist-photo{
-		width: 400px;
-		height: 400px;
-		border: 5px solid white;
-		padding: 25px;
-		margin: 25px;
-	}
-
-	#artist-video{
-		width: 700px;
-		height: 400px;
-		border: 5px solid white;
-		padding: 25px;
-		margin: 25px;
-
-	}
-
-	#box-header{
-		font-size: 20px;
-		font-weight: bold;
-		color: white;
-		margin-left: 50px;
-	}
-
-	#artist-description{
-		width: 900px;
-		height: 400px;
-		border: 5px solid white;
-		padding: 25px;
-	}
-}
