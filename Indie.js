@@ -129,12 +129,13 @@ function bandTickets (){
 }
 
 	var showResults = function(event){
-		var dEvent = $("<div class='col-lg-3 col-md-3 col-sm-12'>");
+		var dEvent = $("<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>");
 		var show = $("<div class='thumbnail'>");
 		var showImg = $("<img>");
 		var showCap = $("<div class='caption'>");
 		var showH = $("<h5 class='text-center'>");
 		var showDate = $("<p class='text-center'>");
+		var pButton = $("<p class='text-center'>");
 		var btn1 = $("<button class='btn btn-primary page3Link'>More Info</button>");
 		var btn2 = $("<a target='_blank'><button class='btn btn-info'>Tickets</button></a>");
 		showImg.attr("src", event.image);
@@ -143,10 +144,11 @@ function bandTickets (){
 		showDate.html(moment(event.date).format("MM/DD/YYYY"));
 		btn1.attr("value", events.length);
 		btn2.attr("href", event.eventURL);
+		pButton.append(btn1);
+		pButton.append(btn2);
 		showCap.append(showH);
 		showCap.append(showDate);
-		showCap.append(btn1);
-		showCap.append(btn2);
+		showCap.append(pButton);
 		show.append(showCap);
 		dEvent.append(show);
 		$("#eventDiv").append(dEvent);
