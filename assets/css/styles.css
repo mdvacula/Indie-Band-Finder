@@ -26,10 +26,11 @@ background: linear-gradient(to right, #f83600, #fe8c00); /* W3C, IE 10+/ Edge, F
     left: 0;
     height: 150px;
     border-color: #fff;
+    color: #fff;
 }
 
 #title2 {
-    color: #ffffff;
+    color: #9c27b0;
     position: absolute;
     margin: auto;
     top: 0;
@@ -56,3 +57,183 @@ position: absolute;
 .form-group .form-control .is-focused {
     border-bottom-color: #000;
 }
+
+.form-control {
+    color: #ffffff;
+}
+
+#buttonRow {
+    margin-top: 200px;
+}
+
+#buttonOne {
+    background: #fff;
+    color: #ff2400;
+}
+
+#buttonTwo {
+    background: #fff;
+    color: #ff2400;
+}
+
+#buttonThree {
+    background: #fff;
+    color: #ff2400;
+}
+
+#buttonFour {
+    background: #fff;
+    color: #ff2400;
+}
+
+#buttonFive {
+    background: #fff;
+    color: #ff2400;
+}
+
+        /***Events List***/
+        
+#eventsListColumn {
+    margin: 20px 0;
+    align-items: center;
+    margin-left: 30px;
+}
+
+#buttonSix {
+    margin-left: 30px;
+    background-color: #000;
+    border: 2px #fff;
+}
+
+/* button flex center of page
+==========================================================================*/
+.button-wrapper .btn {
+	margin: 20px 0px;
+}
+.button-wrapper {
+	display: flex;
+    flex-flow: column wrap;
+	justify-content: space-around;
+}
+a.btn>span.glyphicon {
+	margin-left: 12px;
+}
+@media (min-width: 520px) {
+  	.button-wrapper {
+		align-items: center;
+    	flex-flow: row wrap;
+    	-ms-flex-flow: row wrap;
+    	-webkit-flex-flow: row wrap;
+  	}
+	.btn-container-center>a.btn {
+		margin-left: 12px;
+		margin-right: 12px;
+	}
+	.btn-container-center {
+		justify-content: center;
+	}
+	.btn-container-center>a.btn:first-of-type {
+		margin-left: 0;
+	}
+	.btn-container-center>a.btn:last-of-type {
+		margin-right: 0;
+	}
+	.btn-container-left>a.btn {
+		margin-left: 12px;
+		margin-right: 12px;
+	}
+	.btn-container-left {
+		justify-content: flex-start;
+	}
+	.btn-container-left>a.btn:first-of-type {
+		margin-left: 0;
+	}
+	.btn-container-left>a.btn:last-of-type {
+		margin-right: 0;
+	}
+	.btn-container-right>a.btn {
+		margin-left: 12px;
+		margin-right: 12px;
+	}
+	.btn-container-right {
+		justify-content: flex-end;
+	}
+	.btn-container-right>a.btn:first-of-type {
+		margin-left: 0;
+	}
+	.btn-container-right>a.btn:last-of-type {
+		margin-right: 0;
+	}
+	.btn-container-stretch>a.btn {
+		margin-left: 12px;
+		margin-right: 12px;
+	}
+	.btn-container-stretch {
+		justify-content: space-between;
+	}
+	.btn-container-stretch>a.btn:first-of-type {
+		margin-left: 0;
+	}
+	.btn-container-stretch>a.btn:last-of-type {
+		margin-right: 0;
+	}
+	.btn-container-col-center {
+		flex-direction: column;
+		align-items: center;
+	}
+	.btn-container-col-left {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.btn-container-col-right {
+		flex-direction: column;
+		align-items: flex-end;
+
+	}
+
+	/*--------------------Page 3----------------------*/
+
+	#artist-photo{
+		width: 400px;
+		height: 400px;
+		border: 5px solid white;
+		padding: 25px;
+		margin: 25px;
+	}
+
+	#artist-video{
+		width: 700px;
+		height: 400px;
+		border: 5px solid white;
+		padding: 25px;
+		margin: 25px;
+		
+	}
+
+	#box-header{
+		font-size: 20px;
+		font-weight: bold;
+		color: white;
+		margin-left: 50px;
+	}
+
+	#artist-description{
+		width: 900px;
+		height: 400px;
+		border: 5px solid white;
+		padding: 25px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
