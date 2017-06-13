@@ -4,6 +4,14 @@ background: -webkit-linear-gradient(to right, #f83600, #fe8c00);  /* Chrome 10-2
 background: linear-gradient(to right, #f83600, #fe8c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+ol{
+  border: 4px solid #A0A;
+}
+li{
+  padding-top:10px;
+  padding-bottom:10px;
+  border-bottom: 4px solid #A0A;
+}
 
 #title {
     color: #ffffff;
@@ -92,7 +100,7 @@ position: absolute;
 }
 
         /***Events List***/
-        
+
 #eventsListColumn {
     margin: 20px 0;
     align-items: center;
@@ -207,7 +215,7 @@ a.btn>span.glyphicon {
 		border: 5px solid white;
 		padding: 25px;
 		margin: 25px;
-		
+
 	}
 
 	#box-header{
@@ -223,17 +231,4 @@ a.btn>span.glyphicon {
 		border: 5px solid white;
 		padding: 25px;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
+}
