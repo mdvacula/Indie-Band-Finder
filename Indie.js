@@ -16,7 +16,7 @@ var valueCheck = function(eventObject){
 	else if (eventObject.image === null ) {
 		check = false;
 	}
-	else if(eventObject.performers === null || eventObject.performers.performer === null || eventObject.performers.performer.name === null || eventObject.performers.performer.name > 1){
+	else if(eventObject.performers === null || eventObject.performers.performer === null || eventObject.performers.performer.name === null || eventObject.performers.performer.length > 1){
 		check = false;
 	}
 
@@ -63,6 +63,7 @@ $(document).on('click', '#zip', function(){
 
 	$(".genre").on("click", function(){
 		$("#eventLink").empty();
+		events.length = 0;
 		keywords = $(this).attr("value");
 		console.log($(this).attr("value"));
 		bandTickets();
@@ -84,14 +85,14 @@ function bandTickets (){
 		//console.log(results.event.length);
 
 			// Empty ol outside of for loop to hold looped results
-			var showShows = $('<ol>');
+			var showShows = $("<ul class='list-group'>");
 
 			$("#eventLink").append(showShows);
 
 			for(var i=0; i<results.event.length;i++){
-				console.log("in for loop" + i);
+				console.log("in for loop: " + i);
 				if(events.length < 7){
-					console.log("if events" + events.length);
+					console.log("if events: " + events.length);
 
 					if(valueCheck(results.event[i]) == true){
 						// Creates event object
@@ -104,8 +105,9 @@ function bandTickets (){
 							image: results.event[i].image.medium.url,
 							description: results.event[i].description
 						}
+
 						// Displays event object properties
-						var show = $('<li>');
+						var show = $("<li class='list-group-item'>");
 						console.log(event.title);
 						console.log(event.artist);
 						show.html(event.title);
@@ -124,7 +126,7 @@ function bandTickets (){
 						show.append(showPic);
 						show.append('<br/>');
 						show.append(event.description);
-						
+
 						showShows.append(show);
 						events.push(event);
 						console.log(event);
@@ -135,40 +137,41 @@ function bandTickets (){
 					}
 				}
 				else{
+					for(var j=0;j<events.length;j++){
+						//console.log(events[j]);
+				console.log(getVideos(events[j]));
+				}
 					break;
 				}
 
 			console.log(events);
 			}
 
-		var getVideo = function(){
-			for(var i=0; i<events.length; i++){
-				console.log(events[i].artist);
-				events[i].videoId = getChannel(events[i].artist);
-			}
-
-		}
-		getVideo();
-		console.log(events);
-			});
-
-
-
+		});
 
 }
-			// if(results.event[i].description!=null){
-			// 	event.description = results.event[i].description;
-			// 	//var b = $('<div>');
-			// 	//b.html(results.event[i].description);
-			// 	//$('#eventLink').append(b);
-			// 	//$('#eventLink').append('<br />');
-			// }
+	//Function to get video id's from youtube
+			var getVideos = function (nEvent){
+				console.log(nEvent);
+				var key = "AIzaSyBNaBVt7q6kyHvRgRBvIaxdRieoHqKJsL8";
+				var queryString1 = $.param({
+						key: "AIzaSyBNaBVt7q6kyHvRgRBvIaxdRieoHqKJsL8",
+						q: nEvent.artist,
+						part: "snippet",
+						type: "video"
 
-			// if(results.event[i].image!=null){
-			// 	event.image = results.event[i].image.medium.url;
-			// 	//var c = $('<img src=' + results.event[i].image.medium.url + '>');
-			// 	//c.attr('href', results.event[i].url);
-			// 	//$('#eventLink').append(c);
-			// 	//$('#eventLink').append('<br />');
-			// }
-//bandTickets();
+				});
+
+				//Ajax call to youtube to get the list of channels
+				$.ajax({
+						url: "https://www.googleapis.com/youtube/v3/search?" + queryString1,
+						method:"GET"
+				}).done(function(result){
+
+						  nEvent.videoId = result.items[0].id.videoId;
+
+						 return nEvent;
+						//var id = result.items[0].id.channelId;  //get the channelId of the first result
+						//console.log("Channel id: " + id);
+						});
+				}
