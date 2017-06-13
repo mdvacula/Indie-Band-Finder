@@ -62,7 +62,7 @@ $(document).on('click', '#zip', function(){
 	});
 
 	$(".genre").on("click", function(){
-		$("#eventLink").empty();
+		$("#eventDiv").empty();
 		events.length = 0;
 		keywords = $(this).attr("value");
 		console.log($(this).attr("value"));
@@ -105,29 +105,7 @@ function bandTickets (){
 							image: results.event[i].image.medium.url,
 							description: results.event[i].description
 						}
-
-						// Displays event object properties
-						var show = $("<li class='list-group-item'>");
-						console.log(event.title);
-						console.log(event.artist);
-						show.html(event.title);
-						show.append('<br/>');
-						show.append(event.artist);
-						show.append('<br/>');
-						var showLink = $('<a>');
-						showLink.html(event.eventURL);
-						showLink.attr('href', event.eventURL);
-						show.append(showLink);
-						show.append('<br/>');
-						show.append(event.date);
-						show.append('<br/>');
-
-						var showPic = $('<img src=' + event.image + '>');
-						show.append(showPic);
-						show.append('<br/>');
-						show.append(event.description);
-
-						showShows.append(show);
+						showResults(event);
 						events.push(event);
 						console.log(event);
 						console.log(events);
@@ -146,10 +124,34 @@ function bandTickets (){
 
 			console.log(events);
 			}
-
 		});
 
 }
+
+	var showResults = function(event){
+		var dEvent = $("<div class='col-lg-3 col-md-3 col-sm-12'>");
+		var show = $("<div class='thumbnail'>");
+		var showImg = $("<img>");
+		var showCap = $("<div class='caption'>");
+		var showH = $("<h5 class='text-center'>");
+		var showDate = $("<p class='text-center'>");
+		var btn1 = $("<button class='btn btn-primary page3Link'>More Info</button>");
+		var btn2 = $("<a target='_blank'><button class='btn btn-info'>Tickets</button></a>");
+		showImg.attr("src", event.image);
+		show.append(showImg);
+		showH.html(event.title);
+		showDate.html(moment(event.date).format("MM/DD/YYYY"));
+		btn1.attr("value", events.length);
+		btn2.attr("href", event.eventURL);
+		showCap.append(showH);
+		showCap.append(showDate);
+		showCap.append(btn1);
+		showCap.append(btn2);
+		show.append(showCap);
+		dEvent.append(show);
+		$("#eventDiv").append(dEvent);
+	}
+
 	//Function to get video id's from youtube
 			var getVideos = function (nEvent){
 				console.log(nEvent);
@@ -175,3 +177,6 @@ function bandTickets (){
 						//console.log("Channel id: " + id);
 						});
 				}
+var showVideo = function(vidId){
+	$("#video").attr("src", "https://www.youtube.com/embed/" + nEvent.videoId);
+};
