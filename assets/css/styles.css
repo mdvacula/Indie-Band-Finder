@@ -82,26 +82,36 @@ position: absolute;
 #buttonOne {
     background: #fff;
     color: #ff2400;
+
 }
 
 #buttonTwo {
     background: #fff;
     color: #ff2400;
+
 }
 
 #buttonThree {
     background: #fff;
     color: #ff2400;
+
 }
 
 #buttonFour {
     background: #fff;
     color: #ff2400;
+
 }
 
 #buttonFive {
     background: #fff;
     color: #ff2400;
+
+}
+
+#buttonSeven{
+  background: #fff;
+  color: #ff2400;
 }
 
         /***Events List***/
