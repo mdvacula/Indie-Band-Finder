@@ -55,7 +55,8 @@ $(document).on('click', '#zip', function(){
 
 	// If valid run the search
 	else{
-		l = $('#zipBands').val();							//set l to the zipcode entered
+		l = $('#zipBands').val();						//set l to the zipcode entered
+		localStorage.setItem("zipCode", l);
 		window.location.href='2ndpage.html';		//progress to next page
 		validEntry=false;											//resets validEnd
 	}
@@ -71,8 +72,11 @@ $(document).on('click', '#zip', function(){
 	});
 
 function bandTickets (){
+
+	var zip = localStorage.getItem("zipCode");
+	console.log("ZIP CODE: " + zip);
 	// Built url = http://api.eventful.com/json/events/search?...?q=music&category=music&keywords=indie&l=08901&within=10&units=miles&app_key=hNbJCFtMGbfsfr9T
-	var searchUrl = 'https://api.eventful.com/json/events/search?...?q=music&category=music&page_size=50&keywords=' + keywords + '&l=' + l + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
+	var searchUrl = 'https://api.eventful.com/json/events/search?...?q=music&category=music&page_size=50&keywords=' + keywords + '&l=' + zip + '&within=' + within + '&units=' + units + '&app_key=' + app_key;
 	$.ajax({
 	url: searchUrl,
 	dataType: 'jsonp',
