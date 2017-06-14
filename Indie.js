@@ -171,7 +171,8 @@ function bandTickets (){
 						url: "https://www.googleapis.com/youtube/v3/search?" + queryString1,
 						method:"GET"
 				}).done(function(result){
-
+						  alert(queryString1);
+						  console.log(url);
 						  nEvent.videoId = result.items[0].id.videoId;
 
 						 return nEvent;
@@ -180,7 +181,7 @@ function bandTickets (){
 						});
 				}
 var showVideo = function(vidId){
-	$("#video").attr("src", "https://www.youtube.com/embed/" + nEvent.videoId);
+	$("#video").attr("src", "https://www.youtube.com/embed/" + vidId);
 };
 
 $(document).on('click', '.page3Link', function(){
@@ -188,4 +189,123 @@ $(document).on('click', '.page3Link', function(){
 	var x = $(this).attr("value");
 	nEvent = events[x];
 	console.log(nEvent.videoId);
+	$('#buttons').empty();
+	$('#eventDiv').empty();
+	addArtistCard();
+	addDescription();
+	addVideoButton();
+	addArtistDescription();
+	addVideo();
 });
+
+function addArtistCard(){
+	var cardHov = $('<div>');
+	cardHov.addClass('col-lg-6 col-sm-6');
+	var cardHovercard = $('<div>');
+	cardHovercard.addClass('card hovercard');
+	var cardBackground = $('<div>');
+	cardBackground.addClass('cardbackground');
+	cardHov.append(cardHovercard);
+	cardHov.append(cardBackground);
+
+	var userAvatar = $('<div>');
+	userAvatar.addClass('useravatar');
+	var bandPic = $('<img src=' + nEvent.image + '>');
+	userAvatar.append(bandPic);
+	cardHov.append(userAvatar);
+
+	var cardInfo = $('<div>');
+	cardInfo.addClass('card-info');
+	var cardTitle = $('<span>');
+	cardTitle.addClass('card-title');
+	cardTitle.html(nEvent.artist);
+	cardInfo.append(cardTitle);
+	cardHov.append(cardInfo);
+	$('#eventDiv').append(cardHov);
+}
+
+function addDescription(){
+	var group1 = $('<div>');
+	group1.addClass('btn-pref btn-group btn-group-justified btn-group-lg');
+	group1.attr('role', 'group');
+	group1.attr('aria-label', '...');
+	var group2 = $('<div>');
+	group2.addClass('btn-group');
+	group2.attr('role', 'group');
+	group1.append(group2);
+	var infoButton = $('<button>');
+	infoButton.addClass('btn btn-primary btn1');
+	infoButton.attr('type', 'button');
+	infoButton.attr('href', '#tab1');
+	infoButton.attr('data-toggle', 'tab');
+	var glyph = $('<span>');
+	glyph.addClass('glyphicon glyphicon-star fontA');
+	glyph.attr('aria-hidden', true);
+	infoButton.append(glyph);
+	var bandDescription = $('<div>');
+	bandDescription.addClass('hidden-xs');
+	bandDescription.addClass('tabText');
+	bandDescription.html('DESCRIPTION');
+	infoButton.append(bandDescription);
+	group1.append(infoButton);
+	$('#eventDiv').append(group1);
+}
+
+function addVideoButton(){
+	var a = $('<div>');
+	a.addClass('btn-group');
+	a.attr('role', 'group');
+	var b = $('<button>');
+	b.attr('type', 'button');
+	b.attr('id', 'favorites');
+	b.addClass('btn btn-default');
+	b.attr('href', '#tab2');
+	b.attr('data-toggle', 'tab');
+	var c = $('<span>');
+	c.addClass('glyphicon glyphicon-heart fontA');
+	c.attr('aria-hidden', true);
+	var d = $('<div>');
+	d.addClass('hidden-xs');
+	d.addClass('tabText');
+	d.html('MUSIC VIDEO');
+	b.append(c);
+	b.append(d);
+	a.append(b);
+	$('#eventDiv').append(a);
+}
+
+function addArtistDescription(){
+	var a = $('<div>');
+	a.addClass('well wellBg');
+	var b = $('<div>');
+	b.addClass('tab-content');
+	var c = $('<div>');
+	c.addClass('tab-pane fade in active');
+	c.attr('id', 'tab1');
+	var d = $('<h4>');
+	d.html(nEvent.description);
+	c.append(d);
+	a.append(b);
+	a.append(c);
+	$('#eventDiv').append(a);
+}
+
+function addVideo(){
+	var e = $('<div>');
+	e.addClass('tab-pane fade in');
+	e.attr('id', 'tab2');
+	var f = $('<iframe>');
+	f.attr('id', 'video');
+	f.attr('width', '300');
+	f.attr('height', '200');
+	f.attr('src', 'https://www.youtube.com/embed/' + nEvent.videoId);
+	e.append(f);
+	$('#eventDiv').append(e);
+}
+// $("#video").attr("src", "https://www.youtube.com/embed/" + vidId);
+// showVideo(nEvent.videoId)
+// <iframe id="myIframe" width="300" height="200"></iframe>
+// Set the content of the src attribute of the iframe dynamically with jQuery:
+
+//  var url = "https://www.youtube.com/embed/" + videoID;
+//  $('#myIframe').attr('src', url)
