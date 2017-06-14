@@ -171,7 +171,6 @@ function bandTickets (){
 						url: "https://www.googleapis.com/youtube/v3/search?" + queryString1,
 						method:"GET"
 				}).done(function(result){
-
 						  nEvent.videoId = result.items[0].id.videoId;
 
 						 return nEvent;
@@ -180,7 +179,7 @@ function bandTickets (){
 						});
 				}
 var showVideo = function(vidId){
-	$("#video").attr("src", "https://www.youtube.com/embed/" + nEvent.videoId);
+	$("#video").attr("src", "https://www.youtube.com/embed/" + vidId);
 };
 
 $(document).on('click', '.page3Link', function(){
@@ -188,4 +187,63 @@ $(document).on('click', '.page3Link', function(){
 	var x = $(this).attr("value");
 	nEvent = events[x];
 	console.log(nEvent.videoId);
+	$('#buttons').empty();
+	$('#eventDiv').empty();
+	addArtistCard();
+	addVideo();
 });
+
+function addArtistCard(){
+	// Create Artist Elements
+	var cardHov = $('<div>');
+	cardHov.addClass('col-lg-12');
+	var cardHovercard = $('<div>');
+	cardHovercard.addClass('card hovercard');
+	var cardBackground = $('<div>');
+	cardBackground.addClass('card-background');
+	var userAvatar = $('<div>');
+	userAvatar.addClass('useravatar');
+	var bandPic = $('<img src=' + nEvent.image + '>');
+	var cardInfo = $('<div>');
+	cardInfo.addClass('card-info');
+	var cardTitle = $('<span>');
+	cardTitle.addClass('card-title');
+	cardTitle.html(nEvent.artist);
+
+	// Position and nest them
+	cardHov.append(cardHovercard);
+	cardHovercard.append(cardBackground);
+	cardHovercard.append(userAvatar);
+	userAvatar.append(bandPic);
+	cardHovercard.append(cardInfo);
+	cardInfo.append(cardTitle);
+	$('#eventDiv').append(cardHov);
+}
+
+function addVideo(){
+	var a = $('<div>');
+	a.addClass('col-lg-12 card hovercard card-background');
+	var b = $('<h4>');
+	b.html(nEvent.description);
+	b.attr('style', 'color:#606; font-weight:bolder');
+
+	// a.attr('style', 'background-color:white');
+	var c = $('<iframe>');
+	c.addClass('text-center');
+	c.attr('style', 'margin-top:20px');
+	c.attr('id', 'video');
+	c.attr('width', '300');
+	c.attr('height', '200');
+	c.attr('src', 'https://www.youtube.com/embed/' + nEvent.videoId);
+
+	$('#eventDiv').append(a);
+	a.append(b);
+	a.prepend(c);
+}
+// $("#video").attr("src", "https://www.youtube.com/embed/" + vidId);
+// showVideo(nEvent.videoId)
+// <iframe id="myIframe" width="300" height="200"></iframe>
+// Set the content of the src attribute of the iframe dynamically with jQuery:
+
+//  var url = "https://www.youtube.com/embed/" + videoID;
+//  $('#myIframe').attr('src', url)
